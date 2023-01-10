@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Space;
 import android.widget.TextView;
 
 import java.io.IOException;
@@ -30,7 +31,6 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
     private Menu mainmenu;
     private View mContentView;
     private LinearLayout Line1;
-    private LinearLayout Line2;
     private ArrayList<Integer> ButtonsId;
     private int MenuLevel=0;
     private int CurrentCat=0;
@@ -74,9 +74,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         mainmenu.Build("Menu.txt");
         basket=findViewById(R.id.basketbutton);
 
-
-        Line1 = findViewById(R.id.linearLayout5);
-        Line2 = findViewById(R.id.linear);
+        Line1 = findViewById(R.id.linear);
         if(MenuLevel==0) {
             DisplayMenu(mainmenu);
         }
@@ -190,8 +188,17 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
 
     }
-    public void onOfficiantButton(View v) throws InterruptedException {
-        NetworkActivity.NETWORK.SendReqvest("OFFICIANT");
+    public void onOfficiantButton(View v) throws InterruptedException, IOException {
+        Thread thread = new Thread(()->
+        {
+            try {
+                NetworkActivity.NETWORK.Send("OTHER", "OFFICIANT");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        thread.start();
+
     }
     public void onBasketButton(View v)
     {
@@ -219,7 +226,7 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
     private void DisplayMealIn(Meal meal, LinearLayout layout) {
         ImageButton btn = new ImageButton(this);
-        btn.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, 250));
+        btn.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 470));
         btn.setImageDrawable(meal.getImageDrawable());
         btn.setScaleType(ImageView.ScaleType.FIT_XY);
         btn.setId(View.generateViewId());
@@ -228,17 +235,20 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         ButtonsId.add(btn.getId());
         layout.addView(btn);
         TextView Text = new TextView(this);
-        Text.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, 130));
+        Text.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         Text.setTextColor(0xFF000000);
         Text.setGravity(Gravity.CENTER_HORIZONTAL);
-        Text.setTextSize(16);
+        Text.setTextSize(18);
         Text.setText(meal.getName()+"\nЦена: "+meal.getCost());
         layout.addView(Text);
-
+        Space space = new Space(this);
+        space.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 20));
+        layout.addView(space);
     }
+    @SuppressLint("SuspiciousIndentation")
     private void DisplayCategoryIcon(Category cat, LinearLayout layout) {
         ImageButton btn = new ImageButton(this);
-        btn.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, 250));
+        btn.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 470));
         if(cat.GetSize()>0)
             btn.setImageDrawable(cat.getMeal(0).getImageDrawable());
             btn.setScaleType(ImageView.ScaleType.FIT_XY);
@@ -250,14 +260,19 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
+
         TextView Text = new TextView(this);
-        Text.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, 75));
+        Text.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         Text.setTextColor(0xFF000000);
 
         Text.setText(cat.getName());
         Text.setGravity(Gravity.CENTER_HORIZONTAL);
         Text.setTextSize(18);
         layout.addView(Text);
+
+        Space space = new Space(this);
+        space.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 20));
+        layout.addView(space);
 
     }
     private void DisplayCategory(Category cat) {
@@ -266,17 +281,14 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
         TextView Title=findViewById(R.id.CatName);
         Title.setText(cat.getName());
         Line1.removeAllViews();
-        Line2.removeAllViews();
+
         ButtonsId.clear();
         for(index=0; index<cat.GetSize(); index++)
              {
-                if((index % 2)==0) {
+
                     DisplayMealIn(cat.getMeal(index), Line1);
-                }
-                else
-                {
-                    DisplayMealIn(cat.getMeal(index), Line2);
-                }
+
+
 
             }
 
@@ -286,19 +298,14 @@ public class MenuActivity extends AppCompatActivity implements View.OnClickListe
 
         int index;
         Line1.removeAllViews();
-        Line2.removeAllViews();
+
         ButtonsId.clear();
         TextView Title=findViewById(R.id.CatName);
         Title.setText("Категории");
         for(index=0; index<menu.GetSize(); index++)
         {
-            if((index % 2)==0) {
+
                 DisplayCategoryIcon(menu.GetCategory(index), Line1);
-            }
-            else
-            {
-                DisplayCategoryIcon(menu.GetCategory(index), Line2);
-            }
 
         }
 

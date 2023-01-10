@@ -1,5 +1,6 @@
 package com.example.emenu;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -142,6 +143,7 @@ public class Menu {
         return  new Meal("Еrror", 0, "Еrror", null, " ");
     }
 
+    @SuppressLint("SuspiciousIndentation")
     public boolean Build(String configFilename)
     {
         BufferedReader br;
@@ -167,7 +169,7 @@ public class Menu {
                     s.getChars(1, s.length(), name, 0);
 
                     s=new String(name);
-                    if(s.compareTo("END")!=0) {
+                    if(!s.startsWith("END")) {
                         CatID++;
                         Size++;
                         categories.add(new Category(s));

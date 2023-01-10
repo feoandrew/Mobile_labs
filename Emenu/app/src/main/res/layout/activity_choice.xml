@@ -19,8 +19,8 @@
 
     <LinearLayout
         android:id="@+id/top"
-        android:layout_width="607dp"
-        android:layout_height="50dp"
+        android:layout_width="404dp"
+        android:layout_height="27dp"
         android:background="#000000"
         android:orientation="horizontal"
         android:weightSum="1"
@@ -31,8 +31,8 @@
 
     <Button
         android:id="@+id/Exitbutton"
-        android:layout_width="200dp"
-        android:layout_height="100dp"
+        android:layout_width="201dp"
+        android:layout_height="74dp"
         android:layout_marginTop="20dp"
         android:layout_weight="1"
         android:gravity="center|center_vertical"
@@ -80,12 +80,12 @@
 
     <Button
         android:id="@+id/addbutton"
-        android:layout_width="200dp"
-        android:layout_height="100dp"
+        android:layout_width="187dp"
+        android:layout_height="81dp"
         android:layout_marginTop="20dp"
         android:background="#00FA0A"
-        android:text="Добавить в заказ"
         android:onClick="onAdd"
+        android:text="Добавить в заказ"
         android:textSize="18sp"
         android:textStyle="bold"
         app:backgroundTint="#15B11C"

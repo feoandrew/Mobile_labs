@@ -67,8 +67,6 @@ private Order UserOrder;
         display.getMetrics(metricsB);
         subtitle.setWidth((metricsB.widthPixels/2));
         DisplayUserOrderIn(MainLinear);
-        Button Delete = dialog.findViewById(R.id.DeleteBut);
-        Delete.setWidth((metricsB.widthPixels/2));
 
 
 
@@ -121,7 +119,7 @@ private Order UserOrder;
         DisplayPositionIn(UserOrder.getPosition(ChangeId), temp);
 
 
-        itog.setText("Cумма Заказа: "+UserOrder.getTotalSum());
+        itog.setText("Cумма Заказа: "+UserOrder.refreshSum());
         dialog.hide();
 
     }
@@ -138,7 +136,7 @@ private Order UserOrder;
 
         itog.setText("Cумма Заказа: "+UserOrder.getTotalSum());
 
-        dialog.hide();
+        dialog.dismiss();
     }
 
     @Override
@@ -157,9 +155,14 @@ private Order UserOrder;
 
     }
     public void onOrderBut(View v) throws InterruptedException {
+
+            Thread thread = new Thread(()-> {
+                NetworkActivity.NETWORK.SendOrder(UserOrder);
+            });
         if(UserOrder.getSize()>0)
-        NetworkActivity.NETWORK.SendOrder(UserOrder);
-        setContentView(R.layout.new_order);
+            thread.start();
+        thread.join();
+       setContentView(R.layout.new_order);
 
 
     }
@@ -182,8 +185,8 @@ private Order UserOrder;
     {
 
         TextView Text = new TextView(this);
-        Text.setLayoutParams(new LinearLayout.LayoutParams((metricsB.widthPixels/2)-20, LinearLayout.LayoutParams.MATCH_PARENT));
-        Text.setTextSize(18);
+        Text.setLayoutParams(new LinearLayout.LayoutParams((metricsB.widthPixels/2)-100, LinearLayout.LayoutParams.MATCH_PARENT));
+        Text.setTextSize(16);
         Text.setTextColor(0xFF000000);
         Text.setText(pos.getName());
         linear.addView(Text);
@@ -192,9 +195,9 @@ private Order UserOrder;
 
         Text = new TextView(this);
         Text.setLayoutParams(new LinearLayout.LayoutParams(70, LinearLayout.LayoutParams.MATCH_PARENT));
-        Text.setText(" X "+pos.getCount());
-        Text.setTextSize(18);
-        Text.setGravity(Gravity.CENTER_VERTICAL);
+        Text.setText("X "+pos.getCount());
+        Text.setTextSize(16);
+        Text.setGravity(Gravity.CENTER);
         Text.setTextColor(0xFF000000);
         linear.addView(Text);
 
@@ -202,9 +205,9 @@ private Order UserOrder;
 
 
         Text = new TextView(this);
-        Text.setLayoutParams(new LinearLayout.LayoutParams(100, LinearLayout.LayoutParams.MATCH_PARENT));
+        Text.setLayoutParams(new LinearLayout.LayoutParams(200, LinearLayout.LayoutParams.MATCH_PARENT));
         Text.setText(" " +pos.getSum()+" ");
-        Text.setTextSize(18);
+        Text.setTextSize(16);
         Text.setGravity(Gravity.CENTER_VERTICAL);
         Text.setTextColor(0xFF000000);
         linear.addView(Text);
@@ -230,7 +233,7 @@ private Order UserOrder;
         {
             pos=UserOrder.getPosition(i);
             LinearLayout linear = new LinearLayout(this);
-            linear.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 100));
+            linear.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 150));
             linear.setId(View.generateViewId());
             linear.setOrientation(LinearLayout.HORIZONTAL);
 

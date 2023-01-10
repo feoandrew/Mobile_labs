@@ -82,29 +82,31 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout6" />
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="80dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="130dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="4dp"
+        android:onClick="onOk"
+        android:text="Применить"
+        android:textSize="12sp"
+        app:backgroundTint="#02B60A"
+        app:layout_constraintEnd_toEndOf="@+id/DeleteBut"
+        app:layout_constraintStart_toStartOf="@+id/DeleteBut"
+        app:layout_constraintTop_toBottomOf="@+id/sum" />
+
+    <Button
+        android:id="@+id/DeleteBut"
+        android:layout_width="130dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="50dp"
+        android:onClick="onDelete"
+        android:text="Убрать"
+        android:textSize="12sp"
+        app:backgroundTint="#FF0000"
+        app:icon="@android:drawable/ic_menu_delete"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <Button
-            android:id="@+id/DeleteBut"
-            android:layout_width="209dp"
-            android:layout_height="match_parent"
-            android:onClick="onDelete"
-            android:text="Убрать из заказа"
-            app:backgroundTint="#FF0000" />
-
-        <Button
-            android:id="@+id/button7"
-            android:layout_width="202dp"
-            android:layout_height="match_parent"
-            android:onClick="onOk"
-            android:text="Применить"
-            app:backgroundTint="#02B60A" />
-    </LinearLayout>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/button7" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

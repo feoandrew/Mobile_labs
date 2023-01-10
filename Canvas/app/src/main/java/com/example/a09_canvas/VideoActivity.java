@@ -63,7 +63,7 @@ public class VideoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_video);
 
         VideoView MyVideo = findViewById(R.id.MyVideo);
-        Uri uri = Uri.parse(Environment.getExternalStorageDirectory() + "/Movies/big_buck_bunny.mp4");
+        Uri uri = Uri.parse(Environment.getExternalStorageDirectory() + "/Download/NNring2.mp4");
         MyVideo.setVideoURI(uri);
 
         MediaController mediaController = new MediaController(this);
@@ -74,8 +74,9 @@ public class VideoActivity extends AppCompatActivity {
         bPreviousPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(VideoActivity.this, MusicActivity.class);
-                startActivity(intent);
+
+                VideoActivity.this.finish();
+
             }
         });
     }

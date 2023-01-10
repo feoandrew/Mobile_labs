@@ -54,7 +54,7 @@ public class ParticlesActivity extends AppCompatActivity {
                 int y = (int)event.getY();
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN: {
-                        final Bitmap allPossibleParticles = Utils.createCircleBitmap(Color.BLACK, 20);
+                        final Bitmap allPossibleParticles = Utils.createCircleBitmap(Color.CYAN, 20);
                         final ParticlesGenerator particlesGenerator = new ParticlesGenerator() {
                             @Override
                             public Particles generateParticles(Random random) {
@@ -86,8 +86,7 @@ public class ParticlesActivity extends AppCompatActivity {
         bPreviousPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ParticlesActivity.this, SpriteActivity.class);
-                startActivity(intent);
+                ParticlesActivity.this.finish();
             }
         });
 

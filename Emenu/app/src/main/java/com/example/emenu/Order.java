@@ -1,50 +1,12 @@
 package com.example.emenu;
 
+import android.annotation.SuppressLint;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-class Position
-{
-    Position(String name, int count, int cost)
-    {
-        Name=name;
-        Count = count;
-        Cost = cost;
-    }
-    private String Name;
-    private int Count=0;
-    private int Cost=0;
-
-    public int getSum()
-    {
-        return Cost*Count;
-    }
-    public int getCount(){ return Count;}
-    public void setCount(int count)
-    {
-        Count=count;
-    }
-
-    public String getName()
-    {
-        return Name;
-    }
-    public void increase(int count)
-    {
-        Count+=count;
-    }
-    public void decrease(int count)
-    {
-        Count-=count;
-    }
-    public int getCost()
-    {
-        return Cost;
-    }
-
-}
-
-public class Order {
+public class Order implements Serializable {
 
 
    private ArrayList<Position> order;
@@ -69,6 +31,16 @@ public class Order {
 
         return TotalSum;
     }
+    public int refreshSum()
+    {
+        TotalSum = 0;
+        for(Position p : order)
+        {
+            TotalSum = TotalSum+p.getCost()*p.getCount();
+        }
+        return TotalSum;
+    }
+    @SuppressLint("SuspiciousIndentation")
     public void put(String name, int count, int cost)
     {
         boolean contains=false;

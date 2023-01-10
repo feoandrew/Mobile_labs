@@ -4,13 +4,18 @@ import java.io.Serializable;
 
 
     public class ClientMessage implements Serializable {
-        String sender;
-        String message;
+        public String sender;
+        public String type;
+        public String message;
+        public byte File[];
+        public Order order;
 
-        ClientMessage(String sndr, String msg)
+       public ClientMessage(String sndr, String msg_type, String msg)
         {
             sender = sndr;
             message = msg;
+            type = msg_type;
+            File = new byte[1024];
         }
     }
 

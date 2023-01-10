@@ -27,25 +27,25 @@ public class HouseView extends View {
 
         // Lawn
         paint.setColor(Color.parseColor("#7CFC00"));
-        rect.set(spToPx(0, this), spToPx(200, this), spToPx(875, this), spToPx(300, this));
+        rect.set(spToPx(0, this), spToPx(200, this), spToPx(450, this), spToPx(300, this));
         canvas.drawRect(rect, paint);
 
         // House
         paint.setColor(Color.parseColor("#CD853F"));
-        rect.set(spToPx(300, this), spToPx(150, this), spToPx(450, this), spToPx(250, this));
+        rect.set(spToPx(100, this), spToPx(150, this), spToPx(200, this), spToPx(250, this));
         canvas.drawRect(rect, paint);
 
         // Chimney
         paint.setColor(Color.parseColor("#B22222"));
-        rect.set(spToPx(405, this), spToPx(100, this), spToPx(425, this), spToPx(150, this));
+        rect.set(spToPx(160, this), spToPx(150, this), spToPx(180, this), spToPx(100, this));
         canvas.drawRect(rect, paint);
 
         paint.setColor(Color.parseColor("#8B4513"));
         Path path = new Path();
-        path.moveTo(spToPx(280, this), spToPx(150, this));
-        path.lineTo(spToPx(375, this), spToPx(120, this));
-        path.lineTo(spToPx(470, this), spToPx(150, this));
-        path.lineTo(spToPx(280, this), spToPx(150, this));
+        path.moveTo(spToPx(50, this), spToPx(150, this));
+        path.lineTo(spToPx(150, this), spToPx(120, this));
+        path.lineTo(spToPx(250, this), spToPx(150, this));
+        path.lineTo(spToPx(50, this), spToPx(150, this));
         path.close();
         canvas.drawPath(path, paint);
 

@@ -57,6 +57,9 @@ public class MusicActivity extends AppCompatActivity {
             return;
         }
 
+
+
+
         String[] projection = {
             MediaStore.Audio.Media.TITLE,
             MediaStore.Audio.Media.DATA,
@@ -84,7 +87,6 @@ public class MusicActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MusicActivity.this, ParticlesActivity.class);
-                startActivity(intent);
             }
         });
 
@@ -298,19 +300,20 @@ public class MusicActivity extends AppCompatActivity {
     }
 
     boolean checkPermission () {
-        int result = ContextCompat.checkSelfPermission(MusicActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE);
-        if (result == PackageManager.PERMISSION_GRANTED) {
-            return true;
-        } else {
+        int result = ActivityCompat.checkSelfPermission(MusicActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE);
+        if (result != PackageManager.PERMISSION_GRANTED) {
             return false;
         }
+
+
+        return true;
+
     }
 
     void requestPermission () {
-        if (ActivityCompat.shouldShowRequestPermissionRationale(MusicActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
-            Toast.makeText(MusicActivity.this, "READ PERMISION IS REQUIRED, PLEASE ALLOW FROM SETTINGS", Toast.LENGTH_SHORT);
-        } else {
+
             ActivityCompat.requestPermissions(MusicActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 123);
-        }
+
+
     }
 }

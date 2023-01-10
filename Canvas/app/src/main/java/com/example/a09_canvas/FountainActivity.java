@@ -54,8 +54,10 @@ public class FountainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
             // Дополнительное задание: поставить свою картинку на частицы
-            // Просто что-то: final Bitmap allPossibleParticles = Utils.createCircleBitmap(Color.BLACK, 20);
-            final Bitmap allPossibleParticles = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.drop1), 120, 120, false);
+            // Просто что-то
+
+                //final Bitmap allPossibleParticles = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.drop1), 120, 120, false);
+                final Bitmap allPossibleParticles = Utils.createCircleBitmap(Color.CYAN, 20);
             final ParticlesGenerator particlesGenerator = new ParticlesGenerator() {
                 @Override
                 public Particles generateParticles(Random random) {

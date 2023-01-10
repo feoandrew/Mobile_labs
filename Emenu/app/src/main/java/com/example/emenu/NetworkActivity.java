@@ -18,7 +18,7 @@ public class NetworkActivity extends AppCompatActivity {
     String IPadress;
     String ManifestFile="Manifest.txt";
     int port;
-    int code;
+    String code;
     TextView Text;
     Thread NETPROCESSING;
     void WriteText(TextView text, String content) throws InterruptedException {
@@ -46,8 +46,7 @@ public class NetworkActivity extends AppCompatActivity {
                 IPadress=br.readLine();
                 input = br.readLine();
                 port = Integer.parseInt(input);
-                input = br.readLine();
-                code = Integer.parseInt(input);
+                code = br.readLine();
                 rez=true;
 
             }
@@ -82,15 +81,14 @@ public class NetworkActivity extends AppCompatActivity {
                                 NETWORK.GetContext(getApplicationContext());
 
                                 String answer;
-                                answer = NETWORK.Auntification(Name, code);
+                                answer = NETWORK.Auntification(code);
                                 WriteText(Text, "Загрузка файлов");
                                 if (answer.compareTo("PASSWORD CORRECT") == 0) {
 
-                                    do {
-                                        answer = NETWORK.Download(ManifestFile);
-                                    }while (answer.compareTo("RELOAD")==0);
+                                        answer = NETWORK.Download(ManifestFile, getFilesDir().getPath());
 
-                                    if (answer.compareTo("SENDING") == 0) {
+
+                                    if (answer.compareTo("COMPLETE") == 0) {
 
                                     } else {
                                         WriteText(Text, answer);
@@ -102,51 +100,54 @@ public class NetworkActivity extends AppCompatActivity {
 
 
                                         String filename = rd.readLine();
-                                        while (filename.compareTo("/Updates") != 0)
-                                        {
+                                        while (filename.compareTo("/Updates") != 0) {
 
 
-                                                    File H=new File(getFilesDir().getPath()+"/"+filename);
-                                                    if(!H.exists()) {
-                                                        do {
-                                                            answer = NETWORK.Download(filename);
-                                                        }while (answer.compareTo("RELOAD")==0);
-                                                        if (answer.compareTo("SENDING") == 0) {
-                                                            WriteText(Text, filename + " Downloaded Successfuly");
-                                                            Manifest.add(filename);
+                                            File H = new File(getFilesDir().getPath() + "/" + filename);
+                                            if (!H.exists()) {
+
+                                                answer = NETWORK.Download(filename, getFilesDir().getPath());
+
+                                                if (answer.compareTo("COMPLETE") == 0) {
+                                                    WriteText(Text, filename + " Downloaded Successfuly");
+                                                    Manifest.add(filename);
 
 
-                                                        } else {
-                                                            Success = false;
-                                                            WriteText(Text, answer + filename);
-                                                            break;
-                                                        }
-                                                    }
-                                                    else
-                                                    {
-                                                        Manifest.add(filename);
+                                                } else {
+                                                    Success = false;
+                                                    WriteText(Text, answer + " " + filename);
+                                                    break;
+                                                }
+                                            } else {
+                                                Manifest.add(filename);
 
-                                                    }
+                                            }
                                             filename = rd.readLine();
-
-
+                                            if (filename == null) {
+                                                break;
+                                            }
 
 
                                         }
-                                        filename = rd.readLine();
-                                        while (filename.compareTo("/END") != 0 && Success) {
+                                        if (filename != null) {
+                                            filename = rd.readLine();
+                                            while (filename.compareTo("/END") != 0 && Success) {
+
+                                                answer = NETWORK.Download(filename, getFilesDir().getPath());
+
+                                                if (answer.compareTo("COMPLETE") == 0) {
+                                                    WriteText(Text, filename + " Downloaded Successfuly");
+                                                    Manifest.add(filename);
+                                                    filename = rd.readLine();
 
 
-                                            answer = NETWORK.Download(filename);
-                                            if (answer.compareTo("SENDING") == 0) {
-                                                WriteText(Text, filename + " Downloaded Successfuly");
-                                                filename = rd.readLine();
-                                                Success = true;
-                                            } else {
-                                                Success = false;
-                                                WriteText(Text, answer + filename);
-                                                break;
+                                                } else {
+                                                    Success = false;
+                                                    WriteText(Text, answer + " " + filename);
+                                                    break;
+                                                }
                                             }
+
                                         }
                                         rd.close();
 

@@ -177,10 +177,10 @@ public class MainGamePanel extends SurfaceView implements SurfaceHolder.Callback
             Rect destRect = new Rect(x, y, x + spriteWidth, y + spriteHeight);
             canvas.drawBitmap(bitmap, sourceRect, destRect, null);
 
-            canvas.drawBitmap(bitmap, 20, 150, null);
+            canvas.drawBitmap(bitmap, 20, 250, null);
             Paint paint = new Paint();
             paint.setARGB(50, 0, 255, 0);
-            canvas.drawRect(20 + (currentFrame * destRect.width()), 150, 20 + (currentFrame * destRect.width()) + destRect.width(), 150 + destRect.height(),  paint);
+            canvas.drawRect(20 + (currentFrame * destRect.width()), 250, 20 + (currentFrame * destRect.width()) + destRect.width(), 250 + destRect.height(),  paint);
         }
     }
 }

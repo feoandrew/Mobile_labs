@@ -9,21 +9,22 @@
 
     <Button
         android:id="@+id/button8"
-        android:layout_width="150dp"
-        android:layout_height="75dp"
+        android:layout_width="140dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="96dp"
         android:layout_weight="1"
         android:gravity="center|left"
         android:onClick="BackButton"
         android:text="Назад"
-        android:textSize="18sp"
+        android:textSize="14sp"
+
         app:backgroundTint="#F80000"
         app:icon="@drawable/abc_vector_test"
         app:iconGravity="start"
         app:iconPadding="6dp"
-
-        app:iconSize="34dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:iconSize="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/OrderBut"
+        app:layout_constraintTop_toTopOf="@+id/OrderBut" />
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -56,7 +57,7 @@
 
                 <TextView
                     android:id="@+id/textView4"
-                    android:layout_width="wrap_content"
+                    android:layout_width="158dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="Бевстроганов из говна и палок x2" />
@@ -66,11 +67,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Цена:200" />
+                    android:text="Цена:\n200" />
 
                 <Button
                     android:id="@+id/button9"
-                    android:layout_width="150dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="Изменить"
@@ -81,8 +82,10 @@
 
     <TextView
         android:id="@+id/subtitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="144dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="12dp"
         android:text="Название и колличество"
         android:textColor="#000000"
         android:textSize="16sp"
@@ -94,7 +97,8 @@
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="38dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginBottom="4dp"
         android:text="Cумма"
         android:textColor="#020202"
         android:textSize="16sp"
@@ -128,8 +132,8 @@
 
     <Button
         android:id="@+id/OrderBut"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="140dp"
+        android:layout_height="50dp"
         android:layout_marginStart="150dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="20dp"
@@ -141,9 +145,9 @@
         app:backgroundTint="#04BC0C"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/scrollView2"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.934"
         app:layout_constraintStart_toEndOf="@+id/itog"
         app:layout_constraintTop_toBottomOf="@+id/scrollView2"
-        app:layout_constraintVertical_bias="0.111" />
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
