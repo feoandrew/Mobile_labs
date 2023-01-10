@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/teal_700"
+    android:backgroundTint="@null"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/DeleteDataBase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="250sp"
+        android:height="50sp"
+        android:background="@color/teal_200"
+        android:text="Delete DataBase"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.099"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023" />
+
+    <Button
+        android:id="@+id/AddItem"
+        android:layout_width="119dp"
+        android:layout_height="60dp"
+        android:width="200sp"
+        android:height="60sp"
+        android:background="@color/teal_200"
+        android:text="Add"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/TypeNote"
+        app:layout_constraintTop_toTopOf="@+id/TypeNote"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="0dp"
+        android:layout_height="400dp"
+        android:background="#FFFFFF"
+        android:paddingTop="90sp"
+        android:paddingBottom="90sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/AddItem"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/TypeNote"
+        app:layout_constraintTop_toBottomOf="@+id/TypeNote"
+        app:layout_constraintVertical_bias="0.094">
+
+    </ListView>
+
+    <Button
+        android:id="@+id/PreviousPage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="170sp"
+        android:height="50sp"
+        android:background="@color/teal_200"
+        android:text="Previous Page"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.124"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/NextPage"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/NextPage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="170sp"
+        android:height="50sp"
+        android:background="@color/teal_200"
+        android:text="Next Page"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/PreviousPage"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.898" />
+
+    <EditText
+        android:id="@+id/TypeNote"
+        android:layout_width="280dp"
+        android:layout_height="60dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:hint="Type Note"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.15" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
